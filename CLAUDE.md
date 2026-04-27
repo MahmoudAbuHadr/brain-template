@@ -22,7 +22,7 @@ The skill runs in the **user's working directory**, not this repo. Steps:
 3. **Scaffold folders** — `mkdir -p {topic-slug}/raw {topic-slug}/wiki {topic-slug}/outputs`
 4. **Write schema** — create `{topic-slug}/CLAUDE.md` from the template in SKILL.md, personalized with the user's topic and interests.
 5. **Scrape seed URLs** — if the user provided URLs, use `agent-browser` to extract and save content into `raw/`.
-6. **Print starter prompts** — read and print `references/starter-prompts.md` in full.
+6. **Print starter prompts** — read and print `references/starter-prompts.md` listing the four skills.
 
 ## agent-browser Integration
 
@@ -35,6 +35,19 @@ agent-browser get title
 agent-browser close
 ```
 Extracted content is saved as markdown in `{topic-slug}/raw/{slugified-title}.md`.
+
+## Knowledge Base Skills
+
+Four skills ship with this repo for operating a knowledge base after setup:
+
+| Skill | Invoke | When to use |
+|-------|--------|-------------|
+| kb-scrape | `/kb-scrape` | Add any webpage to `raw/` |
+| kb-compile-wiki | `/kb-compile-wiki` | Build or update `wiki/` from `raw/` |
+| kb-query | `/kb-query` | Ask questions, find gaps, generate briefings |
+| kb-health-check | `/kb-health-check` | Monthly audit for contradictions and gaps |
+
+The compounding loop: `raw/` → `/kb-compile-wiki` → `wiki/` → `/kb-query` → `outputs/` → repeat.
 
 ## Knowledge Base Schema Convention
 
