@@ -36,11 +36,17 @@ outputs/    ← generated reports, answers, and analyses
 
 Each wiki article uses `[[topic-name]]` wikilink syntax and starts with a one-paragraph summary. The loop: add sources to `raw/` → compile to `wiki/` → ask questions → save answers back to `outputs/` or update `wiki/` directly.
 
-## Starter prompts
+## Knowledge base skills
 
-Four reference prompts are included in `references/starter-prompts.md`:
+Four skills ship with this template for operating your knowledge base after setup:
 
-1. **Scrape a source** — add any webpage to `raw/`
-2. **Compile wiki** — build `wiki/` from everything in `raw/`
-3. **Ask questions** — query your wiki for gaps, comparisons, briefings
-4. **Monthly health check** — find contradictions, unsourced claims, and missing articles
+| Skill | Invoke | What it does |
+|-------|--------|--------------|
+| `kb-scrape` | `/kb-scrape <url>` | Add any webpage to `raw/` (handles JS-heavy and login-gated pages) |
+| `kb-compile-wiki` | `/kb-compile-wiki` | Build or update `wiki/` from everything in `raw/` |
+| `kb-query` | `/kb-query <question>` | Ask questions, find gaps, compare sources, generate briefings |
+| `kb-health-check` | `/kb-health-check` | Monthly audit for contradictions, unsourced claims, and missing articles |
+
+The compounding loop: `raw/` → `/kb-compile-wiki` → `wiki/` → `/kb-query` → `outputs/` → repeat.
+
+Reusable copies of the prompts that drive these skills are also kept in `references/starter-prompts.md`.
